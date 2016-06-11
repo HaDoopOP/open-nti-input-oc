@@ -1,0 +1,35 @@
+
+
+
+
+## The jvsim container needs to be build manually first
+## https://github.com/nkumar43212/jvsim
+jvsim:
+  image: jvsim
+  command: /home/jvsim/bin/jvsim -m -s -d -i
+  volumes:
+   - /etc/localtime:/etc/localtime
+
+input-oc:
+  image: juniper/open-nti-input-oc
+  command: /go/bin/telegraf -debug
+  environment:
+   - "INFLUXDB_ADDR=opennti"
+   - "OUTPUT_INFLUXDB=true"
+   - "OUTPUT_STDOUT=true"
+  volumes:
+   - ./telegraf.conf:/etc/telegraf/telegraf.conf
+   - /etc/localtime:/etc/localtime
+  links:
+   - opennti
+   - jvsim
+
+opennti:
+  image: juniper/open-nti
+  volumes:
+   - /etc/localtime:/etc/localtime
+  ports:
+   - "80:80"
+   - "3000:3000"
+   - "8083:8083"
+   - "8086:8086"
