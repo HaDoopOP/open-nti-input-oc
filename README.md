@@ -4,12 +4,19 @@
 
 OpenConfig input plugin for OpenNTI, based on Telegraf.
 
-
 # Installation
+
+### 0-Create a local copy of the project
+
+
+```
+git clone https://github.com/Juniper/open-nti-input-oc.git
+```
 
 ### 1- Clone telegraf project with openconfig_telemetry plugin into open-nti-input-oc project
 First, you need to clone a telegraf project into your open-nti-input-oc project
 ```
+cd open-nti-input-oc
 git clone https://github.com/ajhai/telegraf.git
 ```
 
@@ -19,14 +26,15 @@ Second, The container `juniper/open-nti-input-oc` is not published. you need to 
 ./docker.build.sd
 ```
 
-### 3- Build jvsim container locally
+### 3- Build jvsim container locally (optional)
 
-you need to build the jvsim container,
+If you plan to use jvsim to generate data, you need to build the jvsim container first.
 Instructions are available here : https://github.com/nkumar43212/jvsim
 
 # Run / test
+## With JVSIM
 
-you can start all 3 containers with docker-compose
+You can start all 3 containers with docker-compose
 ```
 docker-compose up -d
 ```
@@ -39,10 +47,15 @@ you can check each container status by looking at the logs
 
 ```
 docker logs openntiinputoc_jvsim_1
-
 ```
-
 jvsim server will take 10-20s to start
+
+## With real Junos device
+
+You can start both containers (open-nti and telegraf) with docker-compose
+```
+docker-compose -f docker-compose-junos.yaml up -d
+```
 
 # known issues
 
