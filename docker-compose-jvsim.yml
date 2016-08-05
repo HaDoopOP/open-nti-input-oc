@@ -18,14 +18,14 @@ input-oc:
    - "OUTPUT_INFLUXDB=true"
    - "OUTPUT_STDOUT=true"
   volumes:
-   - ./telegraf.conf:/etc/telegraf/telegraf.conf
+   - ./telegraf-jvsim.conf:/etc/telegraf/telegraf.conf
    - /etc/localtime:/etc/localtime
   links:
    - opennti
    - jvsim
 
 opennti:
-  image: juniper/open-nti
+  image: juniper/open-nti:influxdb1.0
   volumes:
    - /etc/localtime:/etc/localtime
   ports:
