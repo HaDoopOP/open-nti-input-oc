@@ -27,9 +27,9 @@ input-oc:
 opennti:
   image: juniper/open-nti:influxdb1.0
   volumes:
+   - ./dashboard.json:/src/dashboards/dashboard.json
    - /etc/localtime:/etc/localtime
   ports:
-   - "80:80"
    - "3000:3000"
    - "8083:8083"
    - "8086:8086"
