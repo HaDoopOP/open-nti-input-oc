@@ -63,7 +63,7 @@ If you want to add the container, as part of a main install of OpenNTI, you need
 
 You can start both containers (open-nti and telegraf) with docker-compose
 ```
-docker-compose -f docker-compose-junos.yaml up -d
+docker-compose -f docker-compose-junos.yml up -d
 ```
 
 ## With JVSIM
@@ -72,7 +72,7 @@ docker-compose -f docker-compose-junos.yaml up -d
 
 You can start all 3 containers with docker-compose
 ```
-docker-compose -f docker-compose-jvsim up -d
+docker-compose -f docker-compose-jvsim.yml up -d
 ```
 
 It will start 3 containers:
